@@ -1,0 +1,24 @@
+---
+title: "Exp design"
+author: "Gabe Runte"
+date: "12/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE}
+sdlngs <- read_csv(here("data", "seedling_measurements.csv")) %>% 
+  clean_names()
+trtmnts <- sdlngs %>% 
+  group_by(soil_type, treatment) %>% 
+  summarise(n = n())
+
+```
+
